@@ -31,15 +31,15 @@ ios: react-native run-ios
 
 ## 总体效果
 
-![begin]("https://github.com/shooterRao/react-native-fruitStore/blob/master/screenshots/begin.gif")
+![begin](https://github.com/shooterRao/react-native-fruitStore/blob/master/screenshots/begin.gif)
 
 ## 操作商品效果
 
-![state]("https://github.com/shooterRao/react-native-fruitStore/blob/master/screenshots/state.gif")
+![state](https://github.com/shooterRao/react-native-fruitStore/blob/master/screenshots/state.gif)
 
 ## 购物流程效果
 
-![buy]("https://github.com/shooterRao/react-native-fruitStore/blob/master/screenshots/buy.gif")
+![buy](https://github.com/shooterRao/react-native-fruitStore/blob/master/screenshots/buy.gif)
 
 
 # 参考文档
