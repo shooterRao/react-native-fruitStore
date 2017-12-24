@@ -17,19 +17,29 @@ android: react-native run-android
 ios: react-native run-ios
 ```
 
+# 实现功能
+
+* 商品预览
+* 加入购物车
+* 商品的增删查改
+* 模拟支付
+* 清空购物车，还原商品初始状态
+* 模拟下拉加载
+* 页面的跳转和传值
+
 # 效果演示
 
 ## 总体效果
 
-![begin]("https://raw.githubusercontent.com/shooterRao/react-native-fruitStore/master/screenshots/begin.gif")
+![begin]("https://github.com/shooterRao/react-native-fruitStore/blob/master/screenshots/begin.gif")
 
 ## 操作商品效果
 
-![state]("https://raw.githubusercontent.com/shooterRao/react-native-fruitStore/master/screenshots/state.gif")
+![state]("https://github.com/shooterRao/react-native-fruitStore/blob/master/screenshots/state.gif")
 
 ## 购物流程效果
 
-![buy]("https://raw.githubusercontent.com/shooterRao/react-native-fruitStore/master/screenshots/buy.gif")
+![buy]("https://github.com/shooterRao/react-native-fruitStore/blob/master/screenshots/buy.gif")
 
 
 # 参考文档
