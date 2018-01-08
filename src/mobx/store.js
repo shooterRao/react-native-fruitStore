@@ -9,6 +9,7 @@ import categoryGoods from './catetgoryGoods'
  * CartStore 为购物车页面的数据
  * NewGoodsStore 为首页的数据
  * categoryGoodsStore 为分类页的数据
+ * orderStore 为订单列表页数据
  */
 class RootStore {   
     
@@ -16,6 +17,17 @@ class RootStore {
         this.CartStore = new CartStore(cartGoods,this)
         this.NewGoodsStore = new NewGoodsStore(newGoods,this)
         this.categoryGoodsStore = new categoryGoodsStore(categoryGoods,this)
+        this.OrderStore = new OrderStore(this)
+    }
+}
+
+// 订单store
+class OrderStore {
+    // 无须成为被观察对象
+    allDatas = []
+
+    constructor(rootStore) {
+        this.rootStore = rootStore
     }
 }
 

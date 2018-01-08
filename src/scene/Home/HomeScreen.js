@@ -15,6 +15,7 @@ import { inject, observer } from 'mobx-react/native';
 import theme from '../../common/color'
 import { width } from '../../common/screen'
 import ThemeLine from './ThemeLine'
+import ThemeView from './ThemeView'
 import NewGoodsView from './NewGoodsView'
 
 // 引入打乱数组函数
@@ -67,6 +68,8 @@ export default class HomeScreen extends Component {
              autoPlay={true}
             />
         </View>
+        {/* <ThemeLine name={'精选主题'} />
+        <ThemeView/> */}
         <ThemeLine name={'最近新品'}/>
         <NewGoodsView itemDatas={data} navigation={this.props.navigation}/>
         </ScrollView>

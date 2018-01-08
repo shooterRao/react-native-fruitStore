@@ -2,11 +2,11 @@ import React from 'react'
 import {View, Text, Image, TouchableOpacity} from 'react-native'
 import theme from '../../common/color'
 
-const Line =  ({title, subtitle}) => {
+const Line =  ({title, subtitle, onPress}) => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{title}</Text>
-            <TouchableOpacity style={styles.touch}>
+            <TouchableOpacity onPress={()=> onPress && onPress() } style={styles.touch}>
                 <Text>{subtitle}</Text>
                 <Image source={require('../../img/cell_arrow.png')} style={styles.img}/>
             </TouchableOpacity>

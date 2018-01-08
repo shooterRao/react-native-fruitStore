@@ -12,6 +12,7 @@ import CategoryScreen from './scene/Category/CategoryScreen'
 import CartScreen from './scene/Cart/CartScreen'
 import MineScreen from './scene/Mine/MineScreen'
 import ItemDetail from './scene/ItemDetail/ItemDetail'
+import OrderScreen from './scene/Order/OrderScreen'
 
 // import ShoppingCar from './shoppingCar/App'
 import TabBarItem from './common/tabBarItem'
@@ -128,7 +129,8 @@ const Navigator = StackNavigator(
   {  
     Tab:{screen: Tab},
     ItemDetail:{screen: ItemDetail},
-    Cart:{screen: CartScreen}
+    Cart:{screen: CartScreen},
+    OrderScreen: {screen: OrderScreen}
   },  
   
   {  

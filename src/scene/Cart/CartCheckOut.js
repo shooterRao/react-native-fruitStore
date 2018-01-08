@@ -16,8 +16,6 @@ import Toast, {DURATION} from 'react-native-easy-toast'
 import theme from '../../common/color'
 import { width } from '../../common/screen'
 
-
-
 @observer
 export default class CheckOut extends Component {
     constructor(props){
@@ -73,6 +71,15 @@ export default class CheckOut extends Component {
             this.setState({
                 visible: false
               },()=>{
+                // 把数据加入到订单页面中
+                // 先拷贝一份数据，必须是独立的，脱离Mobx控制的
+                let orderData = {};
+                orderData.date = new Date()
+                orderData.totalMoney = this.props.mobx.CartStore.totalMoney;
+                orderData.data = [];
+                this.props.mobx.CartStore.allDatas.data.forEach(e => orderData.data.push(Object.assign({},e)))
+                this.props.mobx.OrderStore.allDatas.push(orderData)
+                // 清空购物车
                 this.props.mobx.CartStore.allDatas.data = []
                 // 把所有商品count都变为0
                 this.props.mobx.NewGoodsStore.allDatas.data.forEach(e=> e.count = 0)

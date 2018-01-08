@@ -33,7 +33,7 @@ export default class MineScreen extends Component {
          enabled={true}/>}
       >
         <Header />
-        <Order style={styles.order}/>
+        <Order navigation={this.props.navigation} style={styles.order}/>
       </ScrollView>
     );
   }
