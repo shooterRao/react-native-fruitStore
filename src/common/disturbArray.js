@@ -1,12 +1,12 @@
 // 乱序函数
-export default (array) => {
-   
-        let length = array.length;
-        let current;
-        for(let i = 0; i < length; i++) {
-            current = Math.floor(Math.random()*i);
-            [array[i],array[current]] = [array[current],array[i]]
-        }
-        return array;
+export default array => {
+    var len = array.length;
+    for (var i = 0; i < len - 1; i++) {
+      var idx = Math.floor(Math.random() * (len - i));
+      var temp = array[idx];
+      array[idx] = array[len - i - 1];
+      array[len - i - 1] = temp;
+    }
+    return array;
+  };
   
-}
