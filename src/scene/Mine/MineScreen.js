@@ -1,51 +1,41 @@
+import React from 'react';
+import { StyleSheet, ScrollView, RefreshControl } from 'react-native';
+import PropTypes from 'prop-types';
+import Header from './Header';
+import Order from './Order';
 
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  ScrollView,
-  RefreshControl 
-} from 'react-native';
-import theme from '../../common/color'
-import Header from './Header'
-import Order from './Order'
-export default class MineScreen extends Component {
+const RefreshCon = (
+  <RefreshControl
+    refreshing={false}
+    tintColor="#000000"
+    title="loading"
+    colors={['#000000']}
+    progressBackgroundColor="#ffffff"
+    enabled
+  />
+);
 
-  static navigationOptions = {
-        title: '我的',
-        headerTitleStyle: {alignSelf: 'center', fontSize: 15, color: theme.fontColor},
-        headerStyle: {height: 38, backgroundColor: theme.color}
-  };
+const MineScreen = ({ navigation }) => (
+  <ScrollView
+    style={styles.container}
+    refreshControl={RefreshCon}>
+    <Header />
+    <Order navigation={navigation} style={styles.order} />
+  </ScrollView>
+);
 
-  render() {
-    return (
-      <ScrollView 
-      style={styles.container}
-      refreshControl={
-        <RefreshControl
-          refreshing={false}
-         tintColor="#000000"
-         title="loading"
-         colors={['#000000']}
-         progressBackgroundColor="#ffffff"
-         enabled={true}/>}
-      >
-        <Header />
-        <Order navigation={this.props.navigation} style={styles.order}/>
-      </ScrollView>
-    );
-  }
-}
+MineScreen.propTypes = {
+  navigation: PropTypes.object.isRequired
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   order: {
     marginTop: 10
   }
 });
 
+export default MineScreen;

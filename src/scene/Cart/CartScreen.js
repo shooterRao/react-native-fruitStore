@@ -1,99 +1,74 @@
-
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  ScrollView,
-  FlatList,
-  Image
-} from 'react-native';
+import { StyleSheet, Text, View, FlatList, SafeAreaView } from 'react-native';
 
+import { observer, inject } from 'mobx-react';
+import { computed } from 'mobx';
 
-import { observer, inject } from 'mobx-react'
-import { action, autorun, computed } from 'mobx'
+import PropTypes from 'prop-types';
 
-import theme from '../../common/color'
-import { width,height } from '../../common/screen'
-import CartList from './CartList'
-import Checkout from './CartCheckOut'
-
-// 获取数据
-//import cartDatas from './CartJson'
-
+import theme from '../../common/theme';
+import { width, height } from '../../common/screen';
+import CartList from './CartList';
+import CartCheckout from './CartCheckOut';
 
 @inject('rootStore')
 @observer
 export default class CartScreen extends Component {
-  
-  static navigationOptions = ({navigation,screenProps}) => (
-  navigation.state.params && navigation.state.params.headerStyle ? 
-    {
-      title: '购物车',
-      headerTitleStyle: navigation.state.params.headerStyle,
-      headerStyle: styles.headerStyle,
-     } :
-     {
-     title: '购物车',
-     headerTitleStyle: styles.headerTitleStyle,
-     headerStyle: styles.headerStyle,
-    }
-   );
-
-   constructor(props){
-    super(props)
-    
-    // console.log(this.props.rootStore.CartStore);
-    // 获取购物车mobx数据实例
-    // this.mobx = this.props.rootStore.CartStore
-  }
-
-
+  // 解决安卓机标题偏右问题
+  static navigationOptions = {
+    headerRight: <View />
+  };
 
   @computed get dataSource() {
-    return this.props.rootStore.CartStore.allDatas.data.slice();
+    const { rootStore } = this.props;
+    const { CartStore } = rootStore;
+    return CartStore.foodList;
   }
 
-  _renderItem = ({item}) => {
-    
-    return(
+  renderItem = ({ item }) => {
+    const { rootStore } = this.props;
+    const { CartStore } = rootStore;
+    return (
       // 传入CartStore实例
-      <CartList data={item} mobx={this.props.rootStore.CartStore}/>
-    )
-  }
+      <CartList data={item} CartStore={CartStore} />
+    );
+  };
 
-  _keyExtractor = (item,index)=> {
-    // 千万别用index，不然在删购物车数据时，如果从第一个item开始删会产生节点渲染错乱的bug
-    return item.name
-  }
+  keyExtractor = item => item.name;
 
   render() {
+    const { navigation } = this.props;
     return (
-      <View style={styles.container}>
-      {
-        this.dataSource.length ? 
-        <View style={{flex: 1}}>
-        <View style={{height: height - 38 - 50 - 65}}>
-        <FlatList
-          data={this.dataSource}
-          renderItem={this._renderItem}
-          keyExtractor={this._keyExtractor}
-          /> 
-        </View>
-          
-        {/* 结账View,传入navigation，mobx实例 */}
-        <Checkout mobx={this.props.rootStore} navigation={this.props.navigation}/>
-        </View>
-        :
-      <View style={{flex: 1,justifyContent: 'center',alignItems: 'center'}}>
-        <Text>购物车是空的哦~请到首页或者分类页添加哈๑乛◡乛๑</Text>
-      </View>
-      }
-      </View>
+      <SafeAreaView style={styles.container}>
+        {this.dataSource.length ? (
+          <View style={{ flex: 1 }}>
+            <View style={{ height: height - 38 - 50 - 65 }}>
+              <FlatList
+                data={this.dataSource}
+                renderItem={this.renderItem}
+                keyExtractor={this.keyExtractor}
+              />
+            </View>
+
+            {/* 结账View */}
+            <CartCheckout navigation={navigation} />
+
+          </View>
+        ) : (
+          <View
+            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text>购物车是空的哦~请到首页或者分类页添加哈๑乛◡乛๑</Text>
+          </View>
+        )}
+      </SafeAreaView>
     );
   }
 }
+
+CartScreen.wrappedComponent.propTypes = {
+  rootStore: PropTypes.object.isRequired,
+  navigation: PropTypes.object.isRequired
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -104,7 +79,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    width: width,
+    width,
     height: 50,
     position: 'absolute',
     bottom: 0,
@@ -112,13 +87,12 @@ const styles = StyleSheet.create({
     backgroundColor: theme.color
   },
   headerTitleStyle: {
-    alignSelf: 'center', 
-    fontSize: 15, 
+    alignSelf: 'center',
+    fontSize: 15,
     color: theme.fontColor
   },
   headerStyle: {
-    height: 38, 
+    height: 38,
     backgroundColor: theme.color
   }
 });
-

@@ -1,54 +1,54 @@
-import React, { Component } from 'react'
-import { View, FlatList, Text, StyleSheet } from 'react-native'
-
-import { observer, inject } from 'mobx-react'
-import { action, computed } from 'mobx'
-
-import theme from '../../common/color'
-import OrderList from './OrderList'
+import React, { Component } from 'react';
+import { View, FlatList, StyleSheet, SafeAreaView, Text } from 'react-native';
+import PropTypes from 'prop-types';
+import { observer, inject } from 'mobx-react';
+import { computed } from 'mobx';
+import OrderList from './OrderList';
 
 @inject('rootStore')
 @observer
 export default class OrderScreen extends Component {
-    static navigationOptions = {
-        title: '订单列表',
-        headerTitleStyle: { fontSize: 15, color: theme.fontColor},
-        headerStyle: {height: 38, backgroundColor: theme.color}
-    }
+  // 解决安卓机标题偏右问题
+  static navigationOptions = {
+    headerRight: <View />
+  };
 
-    constructor(props) {
-        super(props)
-        console.log(this.props.rootStore.OrderStore.allDatas)
-        this.state = {
-            dataSource : this.props.rootStore.OrderStore.allDatas
-        }
-    }
+  @computed get OrderData() {
+    const { rootStore } = this.props;
+    const { OrderStore } = rootStore;
+    return OrderStore.allDatas;
+  }
 
-    _renderItem = ({item}) => {
-        return (
-            <OrderList item={item}/>
-        )
-    }
+  renderItem = ({ item }) => <OrderList item={item} />;
 
-    _keyExtractor = (item, index)=> {
-        return item.date
-      }
-    
-    render() {
-        return (
-            <View style={styles.container}>
-                <FlatList
-                    data={this.state.dataSource}
-                    renderItem={this._renderItem}
-                    keyExtractor={this._keyExtractor}
-                />
-            </View>
-        )
-    }
+  keyExtractor = (item, index) => `item-${index}`;
+
+  render() {
+    return (
+      <SafeAreaView style={styles.container}>
+        {this.OrderData.length ? (
+          <FlatList
+            data={this.OrderData}
+            renderItem={this.renderItem}
+            keyExtractor={this.keyExtractor}
+          />
+        ) : (
+          <View
+            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text>订单空空如也~</Text>
+          </View>
+        )}
+      </SafeAreaView>
+    );
+  }
 }
 
+OrderScreen.wrappedComponent.propTypes = {
+  rootStore: PropTypes.object.isRequired
+};
+
 const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    }
-})
+  container: {
+    flex: 1
+  }
+});
