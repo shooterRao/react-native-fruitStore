@@ -1,6 +1,19 @@
 # React-Native+Mobx开发一个简单的水果商城App
 
-> 此项目是基于react-native 0.51 + mobx + react-navigation 来开发的，主要用mobx来模拟实现 **浏览商品 => 加入购物车=> 结账 => 清空购物车 => 还原商品初始状态** 这么一个流程
+## 2018-12-15 更新
+
+最近抽空把这项目的核心依赖全部升级了，具体更新如下:
+
+- react-native(0.57.7)
+- react-navigation(3.0.7)
+- mobX(5.7.0)
+- mobX-react(5.4.2)
+- 引入eslint、prettier
+- iphonexs等比较新的设备的支持
+- 根据react-navigation新的api重写路由
+- 优化购物车mobX状态管理逻辑
+
+[旧版地址](https://github.com/shooterRao/react-native-fruitStore/tree/v1.0)
 
 > 如果您对此项目感兴趣，可以点**Star**支持下，非常感谢！(๑•̀ㅂ•́)و✧
 
@@ -32,6 +45,10 @@ ios: react-native run-ios
 
 # 效果演示
 
+## 设备支持
+
+![show](https://github.com/shooterRao/react-native-fruitStore/blob/master/screenshots/show.png)
+
 ## 总体效果
 
 ![begin](https://github.com/shooterRao/react-native-fruitStore/blob/master/screenshots/begin.gif)
@@ -47,7 +64,7 @@ ios: react-native run-ios
 
 # 参考文档
 
-[Mobx文档](http://cn.mobx.js.org/)
-[react-navigation](http://blog.csdn.net/u013718120/article/details/72357698)
+[mobX文档](http://cn.mobx.js.org/)
+[react-navigation](https://reactnavigation.org/zh-Hans/)
 UI参考于这款微信小程序[wxapp-mall](https://github.com/lin-xin/wxapp-mall)
 
