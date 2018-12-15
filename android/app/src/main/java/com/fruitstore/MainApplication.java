@@ -1,4 +1,4 @@
-package com.eslintapp;
+package com.fruitstore;
 
 import android.app.Application;
 

@@ -1,4 +1,4 @@
-package com.eslintapp;
+package com.fruitstore;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -13,16 +13,16 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "eslintApp";
+        return "fruitStore";
     }
 
     @Override
     protected ReactActivityDelegate createReactActivityDelegate() {
-        return new ReactActivityDelegate(this, getMainComponentName()) {
+      return new ReactActivityDelegate(this, getMainComponentName()) {
         @Override
-        protected ReactRootView createRootView() {
-            return new RNGestureHandlerEnabledRootView(MainActivity.this);
-            }
-        };
-    }
+      protected ReactRootView createRootView() {
+       return new RNGestureHandlerEnabledRootView(MainActivity.this);
+      }
+    };
+  }
 }
