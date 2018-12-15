@@ -65,6 +65,11 @@ ios: react-native run-ios
 # 参考文档
 
 [mobX文档](http://cn.mobx.js.org/)
+
 [react-navigation](https://reactnavigation.org/zh-Hans/)
+
 UI参考于这款微信小程序[wxapp-mall](https://github.com/lin-xin/wxapp-mall)
 
+# License
+
+[MIT](https://opensource.org/licenses/MIT)
