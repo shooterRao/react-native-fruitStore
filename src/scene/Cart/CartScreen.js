@@ -44,7 +44,8 @@ export default class CartScreen extends Component {
           <View style={{ flex: 1 }}>
             <View style={{ height: height - 38 - 50 - 65 }}>
               <FlatList
-                data={this.dataSource}
+                // fixed https://github.com/shooterRao/react-native-fruitStore/issues/7
+                data={this.dataSource.slice()}
                 renderItem={this.renderItem}
                 keyExtractor={this.keyExtractor}
               />
@@ -52,7 +53,6 @@ export default class CartScreen extends Component {
 
             {/* 结账View */}
             <CartCheckout navigation={navigation} />
-
           </View>
         ) : (
           <View

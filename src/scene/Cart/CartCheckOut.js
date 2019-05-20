@@ -37,15 +37,17 @@ export default class CartCheckOut extends Component {
     return rootStore.OrderStore;
   }
 
+  // 全选
   allSelect = () => {
-    this.CartStore.isAllSelected = !this.CartStore.isAllSelected;
-    if (this.CartStore.isAllSelected) {
+    // fixed https://github.com/shooterRao/react-native-fruitStore/issues/7
+    const { isAllSelected } = this.CartStore;
+    if (isAllSelected) {
       this.CartStore.foodList.forEach(e => {
-        e.isSelected = true;
+        e.isSelected = false;
       });
     } else {
       this.CartStore.foodList.forEach(e => {
-        e.isSelected = false;
+        e.isSelected = true;
       });
     }
   };
